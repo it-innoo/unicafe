@@ -9,6 +9,21 @@ const Header = ({ title }) => {
   )
 }
 
+const Stats = ({ good, neutral, bad }) => {
+  const all = good + bad + neutral
+  const average = (good + bad * (-1)) / all
+  const positive = 100 * (good / all)
+
+  return (
+    <aside>
+      <p>Yhteensä {all}</p>
+      <p>Keskiarvo {average}</p>
+      <p>Positiivisia {positive} %</p>
+    </aside>
+
+  )
+}
+
 const App = () => {
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
@@ -31,6 +46,11 @@ const App = () => {
       <p>Hyvä {good}</p>
       <p>Neutraali {neutral}</p>
       <p>Huono {bad}</p>
+      <Stats
+        good={good}
+        neutral={neutral}
+        bad={bad}
+      />
     </main>
   )
 }
