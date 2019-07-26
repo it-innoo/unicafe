@@ -9,7 +9,14 @@ const Header = ({ title }) => {
   )
 }
 
-const Statistic = ({ text, value }) => <p>{text} {value}</p>
+const Statistic = ({ text, value }) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  )
+}
 
 const Statistics = ({ good, neutral, bad }) => {
   const all = good + bad + neutral
@@ -20,7 +27,7 @@ const Statistics = ({ good, neutral, bad }) => {
     return (
       <aside>
         <Header title="Tilastot" />
-        Ei palauteitta
+        Ei yhtään palautetta annettu
       </aside>
     )
   }
@@ -29,13 +36,17 @@ const Statistics = ({ good, neutral, bad }) => {
     <aside>
       <Header title="Tilastot" />
 
-      <Statistic text="Hyvä" value={good} />
-      <Statistic text="Neutraali" value={neutral} />
-      <Statistic text="Huono" value={bad} />
+      <table>
+        <tbody>
+          <Statistic text="Hyvä" value={good} />
+          <Statistic text="Neutraali" value={neutral} />
+          <Statistic text="Huono" value={bad} />
 
-      <p>Yhteensä {all}</p>
-      <p>Keskiarvo {average}</p>
-      <p>Positiivisia {positive} %</p>
+          <Statistic text="Yhteensä" value={all} />
+          <Statistic text="Keskiarvo" value={average} />
+          <Statistic text="Positiivisia" value={positive} />
+        </tbody>
+      </table>
     </aside>
 
   )
