@@ -9,6 +9,8 @@ const Header = ({ title }) => {
   )
 }
 
+const Statistic = ({ text, value }) => <p>{text} {value}</p>
+
 const Statistics = ({ good, neutral, bad }) => {
   const all = good + bad + neutral
   const average = (good + bad * (-1)) / all
@@ -27,9 +29,9 @@ const Statistics = ({ good, neutral, bad }) => {
     <aside>
       <Header title="Tilastot" />
 
-      <p>Hyvä {good}</p>
-      <p>Neutraali {neutral}</p>
-      <p>Huono {bad}</p>
+      <Statistic text="Hyvä" value={good} />
+      <Statistic text="Neutraali" value={neutral} />
+      <Statistic text="Huono" value={bad} />
 
       <p>Yhteensä {all}</p>
       <p>Keskiarvo {average}</p>
@@ -38,6 +40,12 @@ const Statistics = ({ good, neutral, bad }) => {
 
   )
 }
+
+const Button = ({ handleClick, text }) => (
+  <button onClick={handleClick}>
+    {text}
+  </button>
+)
 
 const App = () => {
   // tallenna napit omaan tilaansa
@@ -48,16 +56,19 @@ const App = () => {
   return (
     <main>
       <Header title="Anna palautetta" />
-      <button onClick={() => setGood(good + 1)}>
-        Hyvä
-      </button>
-      <button onClick={() => setNeutral(neutral + 1)}>
-        Neutraali
-      </button>
-      <button onClick={() => setBad(bad + 1)}>
-        Huono
-      </button>
 
+      <Button
+        handleClick={() => setGood(good + 1)}
+        text="Hyvä"
+      />
+      <Button
+        handleClick={() => setNeutral(neutral + 1)}
+        text="Neutraali"
+      />
+      <Button
+        handleClick={() => setBad(bad + 1)}
+        text="Huono"
+      />
 
       <Statistics
         good={good}
