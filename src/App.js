@@ -14,6 +14,15 @@ const Statistics = ({ good, neutral, bad }) => {
   const average = (good + bad * (-1)) / all
   const positive = 100 * (good / all)
 
+  if (all === 0) {
+    return (
+      <aside>
+        <Header title="Tilastot" />
+        Ei palauteitta
+      </aside>
+    )
+  }
+
   return (
     <aside>
       <Header title="Tilastot" />
