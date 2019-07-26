@@ -9,13 +9,19 @@ const Header = ({ title }) => {
   )
 }
 
-const Stats = ({ good, neutral, bad }) => {
+const Statistics = ({ good, neutral, bad }) => {
   const all = good + bad + neutral
   const average = (good + bad * (-1)) / all
   const positive = 100 * (good / all)
 
   return (
     <aside>
+      <Header title="Tilastot" />
+
+      <p>Hyvä {good}</p>
+      <p>Neutraali {neutral}</p>
+      <p>Huono {bad}</p>
+
       <p>Yhteensä {all}</p>
       <p>Keskiarvo {average}</p>
       <p>Positiivisia {positive} %</p>
@@ -42,11 +48,9 @@ const App = () => {
       <button onClick={() => setBad(bad + 1)}>
         Huono
       </button>
-      <Header title="Tilastot" />
-      <p>Hyvä {good}</p>
-      <p>Neutraali {neutral}</p>
-      <p>Huono {bad}</p>
-      <Stats
+
+
+      <Statistics
         good={good}
         neutral={neutral}
         bad={bad}
